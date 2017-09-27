@@ -22,6 +22,4 @@ status = git_status()
 while status:
     run('git add -p .')
     run('git commit')
-    print(git_status())
-    exit(0)
 

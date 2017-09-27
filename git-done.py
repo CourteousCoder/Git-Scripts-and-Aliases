@@ -9,17 +9,20 @@ import subprocess
 def run(command):
     return subprocess.run(command.split(' '))
 
-def git_status():
+def has_changes():
     status = subprocess.run("git status --porcelain".split(' '),stdout=subprocess.PIPE)
     if status.stdout:
-        return status.stdout.decode('utf-8')
+        return True
     else:
-        return ''
+        return False
+
+def git_commit():
+    commit = run('git commit')
+    print(commit.stderr)
 
 # Main Script
 
-status = git_status()
-while status:
+while has_changes():
     run('git add -p .')
     run('git commit')
 

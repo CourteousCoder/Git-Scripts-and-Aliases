@@ -18,11 +18,12 @@ def has_changes():
 
 def git_commit():
     commit = run('git commit')
-    print(commit.stderr)
+    if commit.returncode is 1:
+        exit(1)
 
 # Main Script
 
 while has_changes():
     run('git add -p .')
-    run('git commit')
+    git_commit()
 

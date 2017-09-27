@@ -27,3 +27,4 @@ while has_changes():
     run('git add -p .')
     git_commit()
 
+exit(run('git push').returncode)
